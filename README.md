@@ -89,14 +89,13 @@ What does Metricbeat record?
 Merticbeat collects syetem metircs from the system operating system and running services. 
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Jump Box | Gateway  | 10.0.0.4   | Linux            |
+| Web-1    | Server   | 10.0.0.9   | Linux            |
+| Web-2    | Server   | 10.0.0.10  | Linux            |
+| Elk      | Server   | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
@@ -104,7 +103,7 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the Jumpbox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 
- 73.235.128.52
+73.235.128.52
 
 Machines within the network can only be accessed by the Jumpbox.
 
@@ -116,9 +115,10 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | Yes                 | 73.235.128.52        |
+| Web-1    | No                  | 23.101.204.96        |
+| Web-2    | No                  | 23.101.204.96        |
+| ELK      | Yes                 | 73.325.128.52        |
 
 ### Elk Configuration
 
@@ -127,9 +127,17 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 Automating with ansibles takes mundane tasks away from the Administrtor and allows them to focus on other things.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+
+.Install Filebeat
+
+.Copy pre confgiured image of filebeat
+
+.Setup the pre-configured image of filebeat
+
+.Start Filebeat
+
+.Enable filebeat on boot
+
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -155,12 +163,9 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the filebeat-install.yml file to your files directory.
+- Update the filebeat-config.yml file to include your Elk Server IP
+- Run the playbook, and navigate to your Elk Staks IP to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
 
+****
